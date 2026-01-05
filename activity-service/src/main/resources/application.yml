@@ -1,32 +1,11 @@
 server:
-  port: 9092
+  port: 9094
 
 spring:
   application:
     name: activity-service
 
-  datasource:
-    url: jdbc:mysql://localhost:3306/fitness_tracker
-    username: root
-    password: root
-    driver-class-name:
-  jpa:
-    hibernate:
-      ddl-auto: update
-  profiles:
-    active: local
-  kafka:
-    bootstrap-servers: localhost:8000
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-eureka:
-    client:
-      service-url:
-        defaultZone: http://localhost:9090/eureka/
-
-kafka:
-  topic:
-    name: activity-events
+# Comment out Config Server import until your config server is running
+  config:
+    import: optional:configserver:http://localhost:8888
 

@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: user-service
   datasource:
     url: jdbc:mysql://localhost:3306/fitness_tracker
     username: root
@@ -11,12 +9,10 @@ spring:
       ddl-auto: update
   profiles:
     active: default
-  config:
-    import: optional:configserver:http://localhost:8888
 server:
   port: 9091
 
 eureka:
-    client:
-      service-url:
-        defaultZone: http://localhost:9090/eureka/
+  client:
+    service-url:
+      defaultZone: http://localhost:9090/eureka/

@@ -1,0 +1,29 @@
+#spring:
+#  mongodb:
+#    uri: mongodb://localhost:27017/ai_recommendation
+#
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#    consumer:
+#      auto-offset-reset: earliest
+#      group-id: activity-processor-group
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      properties:
+#        spring.json.use.type.headers: false
+#        spring.json.value.default.type: com.fitness.aiservice.model.Activity
+#        spring.json.trusted.packages: "*"
+#
+#kafka:
+#  topic:
+#    name: activity-events
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:9090/eureka/
+#
+#gemini:
+#  api:
+#    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent
+#    key: AIzaSyAFdtoxOsS4_ulfUij-v8D9M2J2-CegQKI

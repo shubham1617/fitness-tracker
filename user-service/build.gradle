@@ -1,11 +1,11 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '4.0.0'
+	id 'org.springframework.boot' version '3.4.2' // downgraded
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
 ext {
-	springCloudVersion = "2025.1.0"
+	springCloudVersion = "2024.0.1" // compatible with Spring Boot 3.4.2
 }
 
 group = 'com.fitness'
@@ -29,22 +29,35 @@ repositories {
 }
 
 dependencies {
+	// Spring Cloud Config
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+	// Spring Boot Starters
+	implementation 'org.springframework.boot:spring-boot-starter-web'  // webmvc replaced with starter-web
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+	// Eureka Client
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	// OpenAPI
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+
+	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+
+	// MySQL
 	runtimeOnly 'com.mysql:mysql-connector-j'
+
+	// Testing
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // includes JPA & webmvc tests
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 }
 
 dependencyManagement {
 	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+		mavenBom "org.springframework.boot:spring-boot-dependencies:3.4.2"       // aligns Spring Boot
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:2024.0.1"   // aligns Spring Cloud
 	}
 }
 
